@@ -160,25 +160,25 @@ order_conforto = ['Muito baixo', 'Baixo', 'Médio', 'Alto', 'Muito alto']
 order_turmas = ['1 a 3 turmas', '4 a 6 turmas', '7 a 9 turmas', '10 ou mais turmas']
 order_planos = ['1 a 4 diários', '5 a 8 diários', '9 a 12 diários', '13 ou mais diários']
 
-plot_profile_chart(df_professores, 'P1.1_Tempo_Servico', './output/graphs/Professores: Tempo de Serviço', '01_prof_tempo_servico.png', order=order_tempo_srv, xlabel="Tempo de Serviço")
-plot_profile_chart(df_professores, 'P1.2_Segmentos', './output/graphs/Professores: Segmentos de Atuação', '02_prof_segmentos.png', plot_type='pie')
-plot_profile_chart(df_professores, 'P1.3_Conforto_Tec', './output/graphs/Professores: Conforto com Tecnologia', '03_prof_conforto_tec.png', order=order_conforto, xlabel="Nível de Conforto")
-plot_profile_chart(df_professores, 'P1.4_Num_Turmas', './output/graphs/Professores: Número de Turmas', '04_prof_num_turmas.png', order=order_turmas, xlabel="Número de Turmas")
-plot_profile_chart(df_professores, 'P1.5_Num_Planos', './output/graphs/Professores: Número de Planos/Cronogramas', '05_prof_num_planos.png', order=order_planos, xlabel="Número de Planos")
-plot_profile_chart(df_professores, 'P1.6_Outra_Escola_Metodo', './output/graphs/Professores: Atuação em Outras Escolas', '06_prof_outra_escola.png', plot_type='bar', xlabel="Método na Outra Escola")
+plot_profile_chart(df_professores, 'P1.1_Tempo_Servico', 'Professores: Tempo de Serviço', '01_prof_tempo_servico.png', order=order_tempo_srv, xlabel="Tempo de Serviço")
+plot_profile_chart(df_professores, 'P1.2_Segmentos', 'Professores: Segmentos de Atuação', '02_prof_segmentos.png', plot_type='pie')
+plot_profile_chart(df_professores, 'P1.3_Conforto_Tec', 'Professores: Conforto com Tecnologia', '03_prof_conforto_tec.png', order=order_conforto, xlabel="Nível de Conforto")
+plot_profile_chart(df_professores, 'P1.4_Num_Turmas', 'Professores: Número de Turmas', '04_prof_num_turmas.png', order=order_turmas, xlabel="Número de Turmas")
+plot_profile_chart(df_professores, 'P1.5_Num_Planos', 'Professores: Número de Planos/Cronogramas', '05_prof_num_planos.png', order=order_planos, xlabel="Número de Planos")
+plot_profile_chart(df_professores, 'P1.6_Outra_Escola_Metodo', 'Professores: Atuação em Outras Escolas', '06_prof_outra_escola.png', plot_type='bar', xlabel="Método na Outra Escola")
 
 # Supervisores
-order_tempo_gest = ['Menos de 2 anos', 'Entre 2 e 5 anos', 'Mais de 5 anos'] # Verifique se as opções são essas mesmo no seu forms
+order_tempo_gest = ['Menos de 2 anos', 'Entre 2 e 5 anos', 'Entre 5 e 10 anos', 'Mais de 10 anos'] # Ordem para supervisores
 # Ajuste 'Mais de 5 anos' se for diferente, ex: 'Entre 5 e 10 anos', 'Mais de 10 anos'
 
 # Verificar se as colunas existem antes de plotar (evita erros se não houver supervisor)
 if not df_supervisores.empty:
     if 'S1.1_Funcao_Gestora' in df_supervisores.columns:
-        plot_profile_chart(df_supervisores, 'S1.1_Funcao_Gestora', './output/graphs/Supervisores: Função na Equipe Gestora', '07_sup_funcao.png', plot_type='pie')
+        plot_profile_chart(df_supervisores, 'S1.1_Funcao_Gestora', 'Supervisores: Função na Equipe Gestora', '07_sup_funcao.png', plot_type='pie')
     if 'S1.2_Tempo_Gestao' in df_supervisores.columns:
-         plot_profile_chart(df_supervisores, 'S1.2_Tempo_Gestao', './output/graphs/Supervisores: Tempo no Cargo', '08_sup_tempo_gestao.png', order=order_tempo_gest, xlabel="Tempo no Cargo") # Use order aqui se fizer sentido
+         plot_profile_chart(df_supervisores, 'S1.2_Tempo_Gestao', 'Supervisores: Tempo no Cargo', '08_sup_tempo_gestao.png', order=order_tempo_gest, xlabel="Tempo no Cargo") # Use order aqui se fizer sentido
     if 'S1.3_Outras_Plataformas' in df_supervisores.columns:
-        plot_profile_chart(df_supervisores, 'S1.3_Outras_Plataformas', './output/graphs/Supervisores: Uso de Outras Plataformas', '09_sup_outras_plat.png', plot_type='pie')
+        plot_profile_chart(df_supervisores, 'S1.3_Outras_Plataformas', 'Supervisores: Uso de Outras Plataformas', '09_sup_outras_plat.png', plot_type='pie')
 else:
     print("Aviso: Nenhum dado de supervisor encontrado para gerar gráficos de perfil.")
 
@@ -219,9 +219,9 @@ order_tempo_aula = ['Menos de 10 minutos', 'Entre 10 e 20 minutos', 'Entre 20 e 
 
 # Professores
 if 'P2.6_Tempo_Aula_Manual' in df_professores.columns:
-    plot_profile_chart(df_professores, 'P2.6_Tempo_Aula_Manual', './output/graphs/Professores: Tempo Estimado por Aula (Manual)', '19_tempo_manual_prof.png', plot_type='bar', order=order_tempo_aula, xlabel="Tempo Estimado (min)")
+    plot_profile_chart(df_professores, 'P2.6_Tempo_Aula_Manual', 'Professores: Tempo Estimado por Aula (Manual)', '19_tempo_manual_prof.png', plot_type='bar', order=order_tempo_aula, xlabel="Tempo Estimado (min)")
 if 'P2.7_Tempo_Aula_Planilha' in df_professores.columns:
-    plot_profile_chart(df_professores, 'P2.7_Tempo_Aula_Planilha', './output/graphs/Professores: Tempo Estimado por Aula (Planilha)', '20_tempo_planilha_prof.png', plot_type='bar', order=order_tempo_aula, xlabel="Tempo Estimado (min)")
+    plot_profile_chart(df_professores, 'P2.7_Tempo_Aula_Planilha', 'Professores: Tempo Estimado por Aula (Planilha)', '20_tempo_planilha_prof.png', plot_type='bar', order=order_tempo_aula, xlabel="Tempo Estimado (min)")
 
 # Supervisores (Adicione mapeamentos S2.6 e S2.7 se existirem)
 # Exemplo de como seria se as colunas existissem e fossem mapeadas:

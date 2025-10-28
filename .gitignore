@@ -1,3 +1,4 @@
 /app/graficos_tcc/*
 /app/output/*
 /app/input/*
+.env

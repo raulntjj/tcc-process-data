@@ -1,0 +1,314 @@
+================================================================================
+RELATÓRIO CONSOLIDADO - ANÁLISE DE DADOS TCC
+================================================================================
+Data de geração: 28/10/2025 22:17:19
+
+SEÇÃO 4.1 - PERFIL DOS PARTICIPANTES
+==================================================
+Tempo de Serviço (N=28):
+  Mais de 10 anos: 19 (67.9%)
+  Entre 6 e 10 anos: 5 (17.9%)
+  Entre 2 e 5 anos: 3 (10.7%)
+  Menos de 2 anos: 1 (3.6%)
+
+Segmentos de Atuação (N=28):
+  Ambos: 13 (46.4%)
+  Ensino Médio: 8 (28.6%)
+  Ensino Fundamental: 7 (25.0%)
+
+Conforto com Tecnologia (N=28):
+  Médio: 16 (57.1%)
+  Alto: 9 (32.1%)
+  Muito alto: 2 (7.1%)
+  Baixo: 1 (3.6%)
+
+Número de Turmas (N=28):
+  4 a 6 turmas: 9 (32.1%)
+  7 a 9 turmas: 8 (28.6%)
+  1 a 3 turmas: 7 (25.0%)
+  10 ou mais turmas: 4 (14.3%)
+
+Número de Planos/Cronogramas (N=28):
+  1 a 4 diários: 13 (46.4%)
+  5 a 8 diários: 10 (35.7%)
+  9 a 12 diários: 4 (14.3%)
+  13 ou mais diários: 1 (3.6%)
+
+Atuação em Outras Escolas (N=27):
+  Não leciono em outro lugar: 16 (59.3%)
+  Não há um software, os planejamentos são feitos na mão: 6 (22.2%)
+  Não há um software, os planejamentos são feitos em uma planilha do Google ou similar.: 4 (14.8%)
+  Há um software para isso e é muito bom: 1 (3.7%)
+
+SEÇÕES 4.2 a 4.5 - ANÁLISE COMPARATIVA
+==================================================
+MÉDIAS DE CONCORDÂNCIA - PROFESSORES:
+Médias de Concordância (1=Discordo Totalmente, 5=Concordo Totalmente)
+--------------------------------------------------------------------------------
+P2.1_Rapidez:
+  Manual: 1.79
+  Planilha: 2.75
+  PlanningApp: 4.36
+
+P2.2_Acesso_Fora:
+  Manual: 1.96
+  Planilha: 2.89
+  PlanningApp: 4.29
+
+P2.3_Encontrar_Info:
+  Manual: 2.61
+  Planilha: 3.14
+  PlanningApp: 4.18
+
+P2.4_Retrabalho:
+  Manual: 2.50
+  Planilha: 3.29
+  PlanningApp: 3.96
+
+P2.5_Tempo_Admin:
+  Manual: 1.61
+  Planilha: 2.75
+  PlanningApp: 3.96
+
+P3.1_Facil_Aprender:
+  Manual: 3.25
+  Planilha: 2.75
+  PlanningApp: 3.71
+
+P3.2_Org_Clara:
+  Manual: 2.75
+  Planilha: 3.04
+  PlanningApp: 4.14
+
+P3.3_Prev_Erros:
+  Manual: 2.07
+  Planilha: 3.04
+  PlanningApp: 4.11
+
+P3.4_Seguro_Dados:
+  Manual: 2.96
+  Planilha: 2.46
+  PlanningApp: 4.07
+
+P3.5_Suporte_Facil:
+  Manual: 3.04
+  Planilha: 3.04
+  PlanningApp: 4.14
+
+P3.6_Satisfacao_Geral:
+  Manual: 2.68
+  Planilha: 2.68
+  PlanningApp: 4.04
+
+P4.1_Alinhamento_BNCC:
+  Manual: 2.46
+  Planilha: 3.11
+  PlanningApp: 4.32
+
+P4.2_Visao_Progresso:
+  Manual: 2.32
+  Planilha: 3.25
+  PlanningApp: 4.21
+
+P4.3_Colaboracao:
+  Manual: 1.86
+  Planilha: 3.14
+  PlanningApp: 4.21
+
+P4.4_Comun_Coord:
+  Manual: 2.57
+  Planilha: 3.04
+  PlanningApp: 4.04
+
+P5.1_Reduz_Estresse:
+  Manual: 2.11
+  Planilha: 2.54
+  PlanningApp: 3.64
+
+P5.2_Causa_Frustracao:
+  Manual: 3.04
+  Planilha: 3.39
+  PlanningApp: 2.82
+
+P5.3_Controle_Autonomia:
+  Manual: 3.43
+  Planilha: 2.86
+  PlanningApp: 4.04
+
+P5.4_Profissionalismo:
+  Manual: 2.82
+  Planilha: 2.89
+  PlanningApp: 4.11
+
+P5.5_Libera_Tempo:
+  Manual: 2.14
+  Planilha: 2.82
+  PlanningApp: 4.07
+
+P6.3_Sentimento:
+
+P6.4_Sentimento:
+
+P6.5_Sentimento:
+
+MÉDIAS DE CONCORDÂNCIA - SUPERVISORES:
+Médias de Concordância (1=Discordo Totalmente, 5=Concordo Totalmente)
+--------------------------------------------------------------------------------
+S3.1_Facil_Aprender:
+
+S3.2_Org_Clara:
+
+S3.3_Prev_Erros:
+
+S3.4_Seguro_Dados:
+
+S3.5_Suporte_Facil:
+
+S2.1_Visao_Geral:
+  Manual: 1.75
+  Planilha: 2.25
+  PlanningApp: 4.50
+
+S2.2_Feedback_Agil:
+  Manual: 2.00
+  Planilha: 2.50
+  PlanningApp: 4.75
+
+S2.3_Identifica_Pendentes:
+  Manual: 1.50
+  Planilha: 2.25
+  PlanningApp: 4.50
+
+S2.4_Verifica_Alinhamento:
+  Manual: 1.25
+  Planilha: 2.00
+  PlanningApp: 4.25
+
+S2.5_Tempo_Operacional:
+  Manual: 2.25
+  Planilha: 3.00
+  PlanningApp: 3.25
+
+S3.7_Satisfacao_Geral:
+  Manual: 1.75
+  Planilha: 1.75
+  PlanningApp: 4.50
+
+S4.1_Config_Ano:
+  Manual: 2.25
+  Planilha: 2.25
+  PlanningApp: 4.50
+
+S4.2_Gerencia_Profs:
+  Manual: 1.50
+  Planilha: 1.75
+  PlanningApp: 4.25
+
+S4.3_Confianca_Dados:
+  Manual: 3.25
+  Planilha: 2.25
+  PlanningApp: 4.50
+
+S5.1_Extrai_Dados_Decisao:
+  Manual: 2.00
+  Planilha: 2.25
+  PlanningApp: 4.50
+
+S5.2_Otimiza_Comun:
+  Manual: 2.00
+  Planilha: 2.25
+  PlanningApp: 4.50
+
+S6.1_Reduz_Estresse:
+  Manual: 1.50
+  Planilha: 2.25
+  PlanningApp: 4.50
+
+S6.2_Causa_Frustracao:
+  Manual: 4.00
+  Planilha: 4.25
+  PlanningApp: 1.75
+
+S6.3_Controle_Autonomia:
+  Manual: 2.00
+  Planilha: 2.25
+  PlanningApp: 4.50
+
+S6.4_Profissionalismo:
+  Manual: 3.25
+  Planilha: 2.25
+  PlanningApp: 4.50
+
+S6.5_Libera_Tempo:
+  Manual: 2.00
+  Planilha: 1.75
+  PlanningApp: 4.25
+
+SEÇÃO 4.6 - SÍNTESE QUALITATIVA
+==================================================
+ANÁLISE QUALITATIVA - PROFESSORES:
+Principais Temas Identificados
+--------------------------------------------------
+
+P6.1_Situacao_Simples:
+  não: 5 menções (20.0%)
+  posso: 5 menções (20.0%)
+  planejamentos: 4 menções (16.0%)
+  tornou: 4 menções (16.0%)
+  simples: 4 menções (16.0%)
+
+P6.2_Beneficio_Alunos:
+  sim: 17 menções (70.8%)
+  alunos: 8 menções (33.3%)
+  qualidade: 5 menções (20.8%)
+  maior: 4 menções (16.7%)
+  aprendizagem: 4 menções (16.7%)
+
+P6.6_Sugestao_Melhoria:
+  não: 7 menções (53.8%)
+  notificações: 3 menções (23.1%)
+  possa: 2 menções (15.4%)
+  ter: 2 menções (15.4%)
+  avisar: 1 menções (7.7%)
+
+P6.7_Beneficios_Desafios:
+  meus: 4 menções (30.8%)
+  mas: 3 menções (23.1%)
+  minha: 3 menções (23.1%)
+  visão: 3 menções (23.1%)
+  erros: 2 menções (15.4%)
+ANÁLISE QUALITATIVA - SUPERVISORES:
+Principais Temas Identificados
+--------------------------------------------------
+
+S7.2_Impacto_Significativo:
+  organização: 2 menções (50.0%)
+  trabalho: 2 menções (50.0%)
+  realizar: 2 menções (50.0%)
+  visão: 2 menções (50.0%)
+  planejamentos: 2 menções (50.0%)
+
+S7.3_Dinamica_Feedback:
+  tinha: 2 menções (50.0%)
+  entre: 2 menções (50.0%)
+  agilidade: 1 menções (25.0%)
+  transparência: 1 menções (25.0%)
+  nas: 1 menções (25.0%)
+
+S7.4_Beneficios_Desafios_Admin:
+  dados: 2 menções (50.0%)
+  desafio: 2 menções (50.0%)
+  app: 2 menções (50.0%)
+  facilidade: 1 menções (25.0%)
+  distribuição: 1 menções (25.0%)
+
+S7.5_Sugestao_Melhoria_Sup:
+  bimestre: 3 menções (75.0%)
+  não: 2 menções (50.0%)
+  cada: 2 menções (50.0%)
+  ainda: 2 menções (50.0%)
+  relatam: 1 menções (25.0%)
+RESUMO DOS Ns UTILIZADOS NO CÁLCULO
+==================================================
+Professores: 28 participantes
+Supervisores: 4 participantes

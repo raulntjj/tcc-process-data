@@ -6,4 +6,4 @@ services:
     build: .
     volumes:
       - ./app:/app
-    command: sh -c "python process.py && python graph.py && python process-logs.py"
+    command: sh -c "python process.py && python graph.py && python percentages.py && python qualitative_analysis.py && python consolidated_report.py && python process-logs.py"

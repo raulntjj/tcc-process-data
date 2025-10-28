@@ -55,6 +55,55 @@ docker compose up -d
    - `app/output/` - Arquivos de saída processados
    - `app/graficos_tcc/` - Visualizações e gráficos gerados
 
+## Novos Recursos Adicionados
+
+### Análise de Porcentagens
+- **percentages.py**: Calcula e exibe porcentagens exatas para todas as perguntas de perfil
+- Gera gráficos com contagens absolutas e percentuais
+- Cria arquivos CSV com resumos de porcentagens
+
+### Análise Qualitativa
+- **qualitative_analysis.py**: Analisa respostas abertas e extrai temas principais
+- Identifica palavras-chave mais frequentes
+- Analisa sentimentos por método (Manual, Planilha, PlanningApp)
+- Gera visualizações de temas identificados
+
+### Relatório Consolidado
+- **consolidated_report.py**: Gera relatório completo com todos os dados
+- Inclui dados essenciais para as seções 4.1 a 4.6 do TCC
+- Cria arquivo com dados formatados para uso direto no trabalho
+
+## Arquivos de Saída Gerados
+
+### Dados de Perfil (Seção 4.1)
+- `percentagens_professores.csv` - Porcentagens dos dados de perfil dos professores
+- `percentagens_supervisores.csv` - Porcentagens dos dados de perfil dos supervisores
+
+### Análise Comparativa (Seções 4.2-4.5)
+- `medias_professores.csv` - Médias de concordância dos professores
+- `medias_supervisores.csv` - Médias de concordância dos supervisores
+
+### Análise Qualitativa (Seção 4.6)
+- `analise_qualitativa_professores.csv` - Temas identificados nas respostas abertas dos professores
+- `analise_qualitativa_supervisores.csv` - Temas identificados nas respostas abertas dos supervisores
+
+### Relatórios Consolidados
+- `relatorio_consolidado.txt` - Relatório completo em formato texto
+- `dados_essenciais_tcc.csv` - Dados formatados para uso direto no TCC
+
+### Gráficos com Porcentagens
+- `01_prof_tempo_servico_pct.png` - Tempo de serviço com porcentagens
+- `02_prof_segmentos_pct.png` - Segmentos com porcentagens
+- `03_prof_conforto_tec_pct.png` - Conforto tecnológico com porcentagens
+- `04_prof_num_turmas_pct.png` - Número de turmas com porcentagens
+- `05_prof_num_planos_pct.png` - Número de planos com porcentagens
+- `06_prof_outra_escola_pct.png` - Atuação em outras escolas com porcentagens
+- `07_sup_funcao_pct.png` - Função dos supervisores com porcentagens
+- `08_sup_tempo_gestao_pct.png` - Tempo na gestão com porcentagens
+- `09_sup_outras_plat_pct.png` - Uso de outras plataformas com porcentagens
+- `qualitative_prof_keywords.png` - Palavras-chave dos professores
+- `qualitative_sup_keywords.png` - Palavras-chave dos supervisores
+
 ## Verificação
 
 Para verificar os logs do container em execução:

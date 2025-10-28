@@ -1,4 +1,7 @@
-/app/graficos_tcc/*
-/app/output/*
-/app/input/*
+/app/graficos_tcc/*.png
+
+/app/output/*.csv
+
+/app/input/*.json
+/app/input/*.csv
 .env

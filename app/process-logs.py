@@ -2,6 +2,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
 import json
 import os
 
@@ -186,35 +187,61 @@ plt.savefig(caminho_bar, bbox_inches='tight')
 plt.close()
 print(f"[OK] Gráfico de barras salvo: {caminho_bar}")
 
-# --- 12. COMPARATIVO 2x2 (apenas pizzas) ---
-fig, axs = plt.subplots(2, 2, figsize=(14, 12))
-fig.suptitle('Comparação: Tempo Médio por Planejamento de Aula', fontsize=16, fontweight='bold')
+# --- 12. COMPARATIVO COMPACTO (versão enxuta para artigo) ---
+fig, ax = plt.subplots(1, 1, figsize=(10, 6))
+fig.suptitle('Comparação: Tempo Médio por Planejamento de Aula', fontsize=14, fontweight='bold')
 
-def plot_pizza_ax(ax, dados, titulo):
-    if not dados:
-        ax.text(0.5, 0.5, 'Sem dados', ha='center', va='center', fontsize=12)
-        ax.set_title(titulo)
-        return
-    contagem = pd.Series(dados).value_counts().reindex(categorias, fill_value=0)
-    if contagem.sum() == 0:
-        ax.text(0.5, 0.5, 'Sem dados', ha='center', va='center', fontsize=12)
-        ax.set_title(titulo)
-        return
-    porcentagens = contagem / contagem.sum() * 100
-    ax.pie(porcentagens, labels=[f"{c}\n({p:.0f}%)" for c, p in zip(categorias, porcentagens)], startangle=90)
-    ax.set_title(titulo, fontsize=12)
+# Preparar dados para gráfico de barras agrupadas
+categorias_ordenadas = ['Menos de 10 min', '10-20 min', '20-30 min', '30-45 min', 'Mais de 45 min']
+cores = ['#2E8B57', '#FF6347', '#4682B4', '#DDA0DD', '#8B4513']
 
-plot_pizza_ax(axs[0,0], manual, 'Manual\n(Estimado)')
-plot_pizza_ax(axs[0,1], planilha, 'Planilha\n(Estimado)')
-plot_pizza_ax(axs[1,0], planning_individual, 'PlanningApp\n(Por Professor)')
-axs[1,1].axis('off')  # Desativa o quarto quadrante
-axs[1,1].text(0.5, 0.5, f'PlanningApp Geral:\n{media_geral_min:.1f} min\n\nVeja gráfico de barras', 
-              ha='center', va='center', fontsize=12, bbox=dict(boxstyle="round", facecolor="#f0f0f0"))
+# Normalizar dados para porcentagem
+manual_contagem = pd.Series(manual).value_counts().reindex(categorias, fill_value=0)
+planilha_contagem = pd.Series(planilha).value_counts().reindex(categorias, fill_value=0)
+planning_contagem = pd.Series(planning_individual).value_counts().reindex(categorias, fill_value=0)
+
+manual_pct = manual_contagem / manual_contagem.sum() * 100
+planilha_pct = planilha_contagem / planilha_contagem.sum() * 100
+planning_pct = planning_contagem / planning_contagem.sum() * 100
+
+# Posições das barras
+x = np.arange(len(categorias_ordenadas))
+width = 0.25
+
+# Plotar barras
+bars1 = ax.bar(x - width, manual_pct, width, label='Manual (Estimado)', color=cores[0], alpha=0.8)
+bars2 = ax.bar(x, planilha_pct, width, label='Planilha (Estimado)', color=cores[1], alpha=0.8)
+bars3 = ax.bar(x + width, planning_pct, width, label='PlanningApp (Real)', color=cores[2], alpha=0.8)
+
+# Adicionar valores nas barras
+def add_value_labels(bars):
+    for bar in bars:
+        height = bar.get_height()
+        if height > 0:
+            ax.text(bar.get_x() + bar.get_width()/2., height + 0.5,
+                   f'{height:.0f}%', ha='center', va='bottom', fontsize=8)
+
+add_value_labels(bars1)
+add_value_labels(bars2)
+add_value_labels(bars3)
+
+# Configurações do gráfico
+ax.set_xlabel('Tempo de Planejamento', fontsize=11)
+ax.set_ylabel('Porcentagem (%)', fontsize=11)
+ax.set_xticks(x)
+ax.set_xticklabels(categorias_ordenadas, rotation=45, ha='right')
+ax.legend(loc='upper right', fontsize=10)
+ax.grid(axis='y', alpha=0.3, linestyle='--')
+
+# Adicionar nota sobre PlanningApp geral
+ax.text(0.02, 0.85, f'PlanningApp - Média Geral: {media_geral_min:.1f} min', 
+        transform=ax.transAxes, fontsize=9, verticalalignment='top',
+        bbox=dict(boxstyle="round,pad=0.3", facecolor="lightblue", alpha=0.7))
 
 plt.tight_layout()
 caminho = os.path.join(output_dir, '21_comparacao_4_pizzas.png')
 plt.savefig(caminho, bbox_inches='tight', dpi=150)
 plt.close()
-print(f"[OK] Comparativo salvo: {caminho}")
+print(f"[OK] Comparativo compacto salvo: {caminho}")
 
 print(f"\nTodos os gráficos salvos em: {output_dir}")

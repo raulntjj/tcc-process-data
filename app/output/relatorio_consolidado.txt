@@ -1,7 +1,7 @@
 ================================================================================
 RELATÓRIO CONSOLIDADO - ANÁLISE DE DADOS TCC
 ================================================================================
-Data de geração: 29/10/2025 02:33:12
+Data de geração: 29/10/2025 05:58:32
 
 SEÇÃO 4.1 - PERFIL DOS PARTICIPANTES
 ==================================================
@@ -154,16 +154,6 @@ P6.5_Sentimento:
 MÉDIAS DE CONCORDÂNCIA - SUPERVISORES:
 Médias de Concordância (1=Discordo Totalmente, 5=Concordo Totalmente)
 --------------------------------------------------------------------------------
-S3.1_Facil_Aprender:
-
-S3.2_Org_Clara:
-
-S3.3_Prev_Erros:
-
-S3.4_Seguro_Dados:
-
-S3.5_Suporte_Facil:
-
 S2.1_Visao_Geral:
   Manual: 1.75
   Planilha: 2.25
@@ -188,6 +178,31 @@ S2.5_Tempo_Operacional:
   Manual: 2.25
   Planilha: 3.00
   PlanningApp: 3.25
+
+S3.1_Facil_Aprender:
+  Manual: 2.00
+  Planilha: 2.25
+  PlanningApp: 4.50
+
+S3.2_Org_Clara:
+  Manual: 1.75
+  Planilha: 2.25
+  PlanningApp: 4.50
+
+S3.3_Prev_Erros:
+  Manual: 1.75
+  Planilha: 2.25
+  PlanningApp: 4.50
+
+S3.4_Seguro_Dados:
+  Manual: 2.75
+  Planilha: 2.25
+  PlanningApp: 4.50
+
+S3.5_Suporte_Facil:
+  Manual: 2.75
+  Planilha: 2.25
+  PlanningApp: 4.50
 
 S3.7_Satisfacao_Geral:
   Manual: 1.75

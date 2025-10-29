@@ -103,14 +103,14 @@ def plot_percentage_chart(data, column, title, filename, plot_type='bar', order=
             ax.set_xlabel(xlabel if xlabel else column.split('_', 1)[-1].replace('_', ' '), fontsize=9)
 
             # Add counts and percentages above bars
-            for container in ax.containers:
+            for container_idx, container in enumerate(ax.containers):
                 labels = []
                 for i, v in enumerate(container.datavalues):
-                    if i < len(percentages):
-                        pct_value = percentages.iloc[i] if hasattr(percentages, 'iloc') else list(percentages.values)[i]
-                        labels.append(f'{int(v)}\n({pct_value:.1f}%)')
-                    else:
-                        labels.append(f'{int(v)}')
+                    # Get the category name for this specific bar
+                    category = counts.index[container_idx]
+                    # Get the percentage for this specific category
+                    pct_value = percentages[category]
+                    labels.append(f'{int(v)}\n({pct_value:.1f}%)')
                 ax.bar_label(container, labels=labels, label_type='edge', padding=2, fontsize=7)
 
             # Wrap long x-axis labels if necessary

@@ -9,10 +9,16 @@ import os
 # --- Configurações Globais ---
 sns.set_theme(style="whitegrid")
 plt.style.use('seaborn-v0_8-colorblind') # Estilo de cores acessível
-plt.rcParams['figure.figsize'] = (10, 6)
-plt.rcParams['font.size'] = 11 # Ajustar tamanho da fonte se necessário
+plt.rcParams['figure.figsize'] = (8, 5) # Mais compacto para artigo científico
+plt.rcParams['font.size'] = 9 # Fonte menor mas legível
+plt.rcParams['axes.titlesize'] = 10
+plt.rcParams['axes.labelsize'] = 9
+plt.rcParams['xtick.labelsize'] = 8
+plt.rcParams['ytick.labelsize'] = 8
+plt.rcParams['legend.fontsize'] = 8
 plt.rcParams['figure.autolayout'] = True # Tenta ajustar layout automaticamente
-plt.rcParams['savefig.dpi'] = 150 # Aumentar resolução das imagens salvas
+plt.rcParams['savefig.dpi'] = 300 # Alta resolução para artigo científico
+plt.rcParams['savefig.bbox'] = 'tight' # Remove espaços em branco
 
 # Criar diretório para salvar gráficos se não existir
 output_dir = "graficos_tcc"
@@ -47,8 +53,8 @@ def plot_profile_chart(data, column, title, filename, plot_type='bar', order=Non
         print(f"Aviso: Coluna '{column}' não encontrada ou vazia. Gráfico '{title}' não gerado.")
         return
 
-    plt.figure(figsize=(10, 6))
-    plt.suptitle(title, fontsize=16, y=1.02)
+    plt.figure(figsize=(8, 5))
+    plt.suptitle(title, fontsize=10, y=0.95)
     clean_data = data.dropna(subset=[column]) # Remover NaNs antes de contar
 
     if clean_data.empty:
@@ -58,9 +64,9 @@ def plot_profile_chart(data, column, title, filename, plot_type='bar', order=Non
 
     if plot_type == 'pie':
         counts = clean_data[column].value_counts()
-        labels = [f'{label} ({value})' for label, value in counts.items()] # Label com contagem
-        plt.pie(counts, labels=labels, autopct='%1.1f%%', startangle=90, pctdistance=0.85, textprops={'fontsize': 10})
-        plt.title("Distribuição Percentual", fontsize=12)
+        labels = [f'{label}\n({value})' for label, value in counts.items()] # Label com contagem
+        plt.pie(counts, labels=labels, autopct='%1.1f%%', startangle=90, pctdistance=0.85, textprops={'fontsize': 8})
+        plt.title("Distribuição Percentual", fontsize=9, pad=10)
 
     elif plot_type == 'bar':
         if order:
@@ -70,18 +76,18 @@ def plot_profile_chart(data, column, title, filename, plot_type='bar', order=Non
             counts = clean_data[column].value_counts()
 
         if not counts.empty:
-            ax = sns.barplot(x=counts.index, y=counts.values, palette='viridis')
-            ax.set_title("Contagem Absoluta", fontsize=12)
-            ax.set_ylabel(ylabel, fontsize=12)
-            ax.set_xlabel(xlabel if xlabel else column.split('_', 1)[-1].replace('_', ' '), fontsize=12)
+            ax = sns.barplot(x=counts.index, y=counts.values, palette='viridis', hue=counts.index, legend=False)
+            ax.set_title("Contagem Absoluta", fontsize=9, pad=10)
+            ax.set_ylabel(ylabel, fontsize=9)
+            ax.set_xlabel(xlabel if xlabel else column.split('_', 1)[-1].replace('_', ' '), fontsize=9)
 
             # Add counts above bars only if height > 0
             for container in ax.containers:
-                ax.bar_label(container, label_type='edge', padding=3)
+                ax.bar_label(container, label_type='edge', padding=2, fontsize=7)
 
             # Wrap long x-axis labels if necessary
-            if max(len(str(label)) for label in counts.index) > 15:
-                 ax.set_xticklabels([textwrap.fill(str(label), width=15) for label in counts.index], rotation=0, ha='center')
+            if max(len(str(label)) for label in counts.index) > 12:
+                 ax.set_xticklabels([textwrap.fill(str(label), width=12) for label in counts.index], rotation=45, ha='right')
             else:
                  ax.set_xticklabels(counts.index, rotation=0, ha='center')
         else:
@@ -98,54 +104,60 @@ def plot_likert_comparison(df_means, title, filename, participant_type=""):
         print(f"Aviso: Sem dados de médias para plotar '{title}'")
         return
 
+    # Filtrar apenas linhas com dados válidos (não NaN)
+    df_means_clean = df_means.dropna(how='all')
+    if df_means_clean.empty:
+        print(f"Aviso: Sem dados válidos para plotar '{title}' após remover NaNs")
+        return
+
     # Mapeamento para rótulos mais curtos e descritivos
     short_labels = {
         # Professor
-        'P2.1_Rapidez': 'Rapidez Registro', 'P2.2_Acesso_Fora': 'Acesso Remoto',
-        'P2.3_Encontrar_Info': 'Encontrar Info.', 'P2.4_Retrabalho': 'Baixo Retrabalho',
-        'P2.5_Tempo_Admin': 'Tempo Admin.',
+        'P2.1_Rapidez': 'Rapidez', 'P2.2_Acesso_Fora': 'Acesso Remoto',
+        'P2.3_Encontrar_Info': 'Encontrar Info', 'P2.4_Retrabalho': 'Baixo Retrabalho',
+        'P2.5_Tempo_Admin': 'Tempo Admin',
         'P3.1_Facil_Aprender': 'Fácil Aprender', 'P3.2_Org_Clara': 'Org. Clara',
-        'P3.3_Prev_Erros': 'Previne Erros', 'P3.4_Seguro_Dados': 'Segurança Dados',
-        'P3.5_Suporte_Facil': 'Suporte Fácil', 'P3.6_Satisfacao_Geral': 'Satisfação Geral',
+        'P3.3_Prev_Erros': 'Previne Erros', 'P3.4_Seguro_Dados': 'Segurança',
+        'P3.5_Suporte_Facil': 'Suporte', 'P3.6_Satisfacao_Geral': 'Satisfação',
         'P4.1_Alinhamento_BNCC': 'Alinh. Normas', 'P4.2_Visao_Progresso': 'Visão Progresso',
-        'P4.3_Colaboracao': 'Colaboração Profs.', 'P4.4_Comun_Coord': 'Comun. Coord.',
-        'P5.1_Reduz_Estresse': 'Reduz Estresse', 'P5.2_Causa_Frustracao': 'Causa Frustração (-)', # Added (-) for clarity
-        'P5.3_Controle_Autonomia': 'Controle/Auton.', 'P5.4_Profissionalismo': 'Profissionalismo',
+        'P4.3_Colaboracao': 'Colaboração', 'P4.4_Comun_Coord': 'Comun. Coord',
+        'P5.1_Reduz_Estresse': 'Reduz Estresse', 'P5.2_Causa_Frustracao': 'Causa Frustração',
+        'P5.3_Controle_Autonomia': 'Controle', 'P5.4_Profissionalismo': 'Profissionalismo',
         'P5.5_Libera_Tempo': 'Libera Tempo',
-        # Supervisor (Adicione mapeamentos para TODAS as perguntas de S2 a S6)
-        'S2.1_Visao_Geral': 'Visão Geral Status', 'S2.2_Feedback_Agil': 'Feedback Ágil',
-        'S2.3_Identifica_Pendentes': 'Identif. Pendentes', 'S2.4_Verifica_Alinhamento': 'Verif. Alinham.',
-        'S2.5_Tempo_Operacional': 'Tempo Operac. Supervisão',
+        # Supervisor
+        'S2.1_Visao_Geral': 'Visão Geral', 'S2.2_Feedback_Agil': 'Feedback',
+        'S2.3_Identifica_Pendentes': 'Identif. Pendentes', 'S2.4_Verifica_Alinhamento': 'Verif. Alinhamento',
+        'S2.5_Tempo_Operacional': 'Tempo Operacional',
         'S3.1_Facil_Aprender': 'Fácil Aprender', 'S3.2_Org_Clara': 'Org. Clara',
-        'S3.3_Prev_Erros': 'Previne Erros', 'S3.4_Seguro_Dados': 'Segurança Dados',
-        'S3.5_Suporte_Facil': 'Suporte Fácil', 'S3.6_Satisfacao_Geral': 'Satisfação Geral', # Check if S3.6 exists
-        'S4.1_Config_Ano': 'Config. Ano Letivo', 'S4.2_Gerencia_Profs': 'Gerenciar Profs.',
-        'S4.3_Confianca_Dados': 'Confiança Dados',
-        'S5.1_Extrai_Dados_Decisao': 'Extrai Dados Decisão', 'S5.2_Otimiza_Comun': 'Otimiza Comun./Transp.',
-        'S6.1_Reduz_Estresse': 'Reduz Estresse Gestão', 'S6.2_Causa_Frustracao': 'Causa Frustração (-)',
-        'S6.3_Controle_Autonomia': 'Controle/Auton. Processos', 'S6.4_Profissionalismo': 'Profiss. Escola',
-        'S6.5_Libera_Tempo': 'Libera Tempo Estratégico'
-        # Adicione outros mapeamentos S... conforme necessário
+        'S3.3_Prev_Erros': 'Previne Erros', 'S3.4_Seguro_Dados': 'Segurança',
+        'S3.5_Suporte_Facil': 'Suporte', 'S3.7_Satisfacao_Geral': 'Satisfação',
+        'S4.1_Config_Ano': 'Config. Ano', 'S4.2_Gerencia_Profs': 'Gerenciar Profs',
+        'S4.3_Confianca_Dados': 'Confiança',
+        'S5.1_Extrai_Dados_Decisao': 'Extrai Dados', 'S5.2_Otimiza_Comun': 'Otimiza Comunicação',
+        'S6.1_Reduz_Estresse': 'Reduz Estresse', 'S6.2_Causa_Frustracao': 'Causa Frustração',
+        'S6.3_Controle_Autonomia': 'Controle', 'S6.4_Profissionalismo': 'Profissionalismo',
+        'S6.5_Libera_Tempo': 'Libera Tempo'
     }
-    # Pegar apenas os índices presentes no df_means e mapeá-los
-    plot_labels = [short_labels.get(idx, idx) for idx in df_means.index]
+    
+    # Pegar apenas os índices presentes no df_means_clean e mapeá-los
+    plot_labels = [short_labels.get(idx, idx) for idx in df_means_clean.index]
 
-    ax = df_means[['Manual', 'Planilha', 'PlanningApp']].plot(kind='bar', figsize=(15, 8), width=0.75)
-    plt.title(title, fontsize=16)
-    plt.ylabel('Média de Concordância (1=Discordo Totalmente, 5=Concordo Totalmente)', fontsize=12)
-    plt.xlabel('Afirmação Avaliada', fontsize=12)
-    plt.xticks(range(len(plot_labels)), plot_labels, rotation=45, ha='right', fontsize=10) # Rotacionar para caber
-    plt.ylim(1, 5.5) # Limite da escala Likert com margem
-    plt.legend(title='Método', bbox_to_anchor=(1.02, 1), loc='upper left')
-    plt.grid(axis='y', linestyle='--', alpha=0.7)
+    plt.figure(figsize=(10, 6))
+    ax = df_means_clean[['Manual', 'Planilha', 'PlanningApp']].plot(kind='bar', width=0.7)
+    plt.title(title, fontsize=11, pad=10)
+    plt.ylabel('Média (1=Discordo, 5=Concordo)', fontsize=9)
+    plt.xlabel('Aspectos Avaliados', fontsize=9)
+    plt.xticks(range(len(plot_labels)), plot_labels, rotation=45, ha='right', fontsize=8)
+    plt.ylim(1, 5.5)
+    plt.legend(title='Método', fontsize=8, loc='upper left')
+    plt.grid(axis='y', linestyle='--', alpha=0.5)
 
     # Add values above bars
     for container in ax.containers:
-        ax.bar_label(container, fmt='%.2f', fontsize=9, padding=3, rotation=90) # Rotacionar valores
+        ax.bar_label(container, fmt='%.1f', fontsize=7, padding=2)
 
     # Adicionar linha de referência no Neutro (3)
-    ax.axhline(3, color='grey', linestyle='--', linewidth=0.8, label='Neutro')
-    ax.legend(title='Método', bbox_to_anchor=(1.02, 1), loc='upper left') # Recriar legenda
+    ax.axhline(3, color='grey', linestyle='--', linewidth=0.8, alpha=0.7)
 
     save_plot(filename, title)
 

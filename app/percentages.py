@@ -9,10 +9,16 @@ import os
 # --- Configurações Globais ---
 sns.set_theme(style="whitegrid")
 plt.style.use('seaborn-v0_8-colorblind')
-plt.rcParams['figure.figsize'] = (12, 8)
-plt.rcParams['font.size'] = 11
+plt.rcParams['figure.figsize'] = (8, 5) # Mais compacto para artigo científico
+plt.rcParams['font.size'] = 9 # Fonte menor mas legível
+plt.rcParams['axes.titlesize'] = 10
+plt.rcParams['axes.labelsize'] = 9
+plt.rcParams['xtick.labelsize'] = 8
+plt.rcParams['ytick.labelsize'] = 8
+plt.rcParams['legend.fontsize'] = 8
 plt.rcParams['figure.autolayout'] = True
-plt.rcParams['savefig.dpi'] = 150
+plt.rcParams['savefig.dpi'] = 300 # Alta resolução para artigo científico
+plt.rcParams['savefig.bbox'] = 'tight' # Remove espaços em branco
 
 # Criar diretório para salvar gráficos se não existir
 output_dir = "graficos_tcc"
@@ -67,8 +73,8 @@ def plot_percentage_chart(data, column, title, filename, plot_type='bar', order=
         print(f"Aviso: Coluna '{column}' não encontrada ou vazia. Gráfico '{title}' não gerado.")
         return
 
-    plt.figure(figsize=(12, 8))
-    plt.suptitle(title, fontsize=16, y=1.02)
+    plt.figure(figsize=(8, 5))
+    plt.suptitle(title, fontsize=10, y=0.95)
     clean_data = data.dropna(subset=[column])
 
     if clean_data.empty:
@@ -80,9 +86,9 @@ def plot_percentage_chart(data, column, title, filename, plot_type='bar', order=
     percentages = (counts / len(clean_data) * 100).round(1)
 
     if plot_type == 'pie':
-        labels = [f'{label}\n({value} - {percentages[label]:.1f}%)' for label, value in counts.items()]
-        plt.pie(counts, labels=labels, autopct='%1.1f%%', startangle=90, pctdistance=0.85, textprops={'fontsize': 10})
-        plt.title("Distribuição Percentual", fontsize=12)
+        labels = [f'{label}\n({value})' for label, value in counts.items()]
+        plt.pie(counts, labels=labels, autopct='%1.1f%%', startangle=90, pctdistance=0.85, textprops={'fontsize': 8})
+        plt.title("Distribuição Percentual", fontsize=9, pad=10)
 
     elif plot_type == 'bar':
         if order:
@@ -91,10 +97,10 @@ def plot_percentage_chart(data, column, title, filename, plot_type='bar', order=
             percentages = percentages.reindex(valid_order).fillna(0)
 
         if not counts.empty:
-            ax = sns.barplot(x=counts.index, y=counts.values, palette='viridis')
-            ax.set_title("Contagem Absoluta e Percentual", fontsize=12)
-            ax.set_ylabel('Número de Participantes', fontsize=12)
-            ax.set_xlabel(xlabel if xlabel else column.split('_', 1)[-1].replace('_', ' '), fontsize=12)
+            ax = sns.barplot(x=counts.index, y=counts.values, palette='viridis', hue=counts.index, legend=False)
+            ax.set_title("Contagem e Percentual", fontsize=9, pad=10)
+            ax.set_ylabel('Número de Participantes', fontsize=9)
+            ax.set_xlabel(xlabel if xlabel else column.split('_', 1)[-1].replace('_', ' '), fontsize=9)
 
             # Add counts and percentages above bars
             for container in ax.containers:
@@ -105,11 +111,11 @@ def plot_percentage_chart(data, column, title, filename, plot_type='bar', order=
                         labels.append(f'{int(v)}\n({pct_value:.1f}%)')
                     else:
                         labels.append(f'{int(v)}')
-                ax.bar_label(container, labels=labels, label_type='edge', padding=3, fontsize=9)
+                ax.bar_label(container, labels=labels, label_type='edge', padding=2, fontsize=7)
 
             # Wrap long x-axis labels if necessary
-            if max(len(str(label)) for label in counts.index) > 15:
-                ax.set_xticklabels([textwrap.fill(str(label), width=15) for label in counts.index], rotation=0, ha='center')
+            if max(len(str(label)) for label in counts.index) > 12:
+                ax.set_xticklabels([textwrap.fill(str(label), width=12) for label in counts.index], rotation=45, ha='right')
             else:
                 ax.set_xticklabels(counts.index, rotation=0, ha='center')
         else:

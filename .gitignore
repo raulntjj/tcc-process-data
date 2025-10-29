@@ -3,5 +3,6 @@
 /app/output/*.csv
 
 /app/input/*.json
+
 /app/input/*.csv
 .env

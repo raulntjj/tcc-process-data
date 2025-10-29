@@ -162,13 +162,13 @@ def gerar_pizza(dados, titulo, arquivo, cores=None):
 # --- 10. GERAR GRÁFICOS DE PIZZA ---
 print("\nGerando gráficos de pizza...")
 
-gerar_pizza(manual, 'Tempo Estimado por Aula\nMétodo Manual', '22_manual_pizza.png')
-gerar_pizza(planilha, 'Tempo Estimado por Aula\nMétodo Planilha', '23_planilha_pizza.png')
-gerar_pizza(planning_individual, 'Tempo Médio Real\nPlanningApp (por Professor)', '24_planningapp_individual_pizza.png')
+gerar_pizza(manual, 'Tempo Médio Estimado por Aula\nMétodo Manual', '22_manual_pizza.png')
+gerar_pizza(planilha, 'Tempo Médio Estimado por Aula\nMétodo Planilha', '23_planilha_pizza.png')
+gerar_pizza(planning_individual, 'Tempo Médio por Aula\nPlanningApp', '24_planningapp_individual_pizza.png')
 
 # --- 11. GRÁFICO DE BARRAS: MÉDIAS DOS 3 MÉTODOS ---
 plt.figure(figsize=(10, 6))
-metodos = ['Manual\n(Estimado)', 'Planilha\n(Estimado)', 'PlanningApp\n(Geral)']
+metodos = ['Manual', 'Planilha', 'PlanningApp']
 medias = [media_manual_min, media_planilha_min, media_geral_min]
 
 bars = plt.bar(metodos, medias, color=['#ff7f0e', '#1f77b4', '#2ca02c'], edgecolor='black', linewidth=1.2)
